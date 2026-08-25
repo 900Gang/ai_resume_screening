@@ -1,0 +1,66 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+*.bak
+*.tmp
+*.sublime-project
+*.sublime-workspace
+
+# Logs and Databases
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.sqlite
+*.db
+
+# Environment variables and secrets
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.pem
+credentials.json
+secret.json
+
+# Common dependency directories (Node, Python, Java, etc.)
+node_modules/
+jspm_packages/
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+env/
+.env_python/
+target/
+out/
+vendor/
+
+# Compiled code and build directories
+dist/
+build/
+*.class
+*.exe
+*.o
+*.so
+*.dll
+*.dylib
+
+# Temporary files
+tmp/
+temp/
