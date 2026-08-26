@@ -1,17 +1,21 @@
 import spacy
 
+from  skill_extractor import extract_skills
+
 nlp = spacy.load("en_core_web_sm")
 
-text = """
-Worked at Microsoft from 2024 to 2026.
-I developed Python applications using Django.
-"""
+text = "I have experience with Python, Django, GitHub,Machine Learning and Data Science."
 
 doc = nlp(text)
 
-for entity in doc.ents:
-    print("Text:", entity.text)
-    print("Label:", entity.label_)
-    print("Start:", entity.start)
-    print("End:", entity.end)
-    print()
+text = extract_skills(text)
+
+tokens = {token.text.lower() for token in doc}
+
+print(tokens)
+
+print("python:", "python" in tokens)
+print("git:", "git" in tokens)
+print("github:", "github" in tokens)
+print("sql:", "sql" in tokens)
+print("sqlalchemy:", "sqlalchemy" in tokens)
