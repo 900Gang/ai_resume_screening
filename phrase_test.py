@@ -1,34 +1,64 @@
 import spacy
 from spacy.matcher import PhraseMatcher
-
+#  Load spaCy
 nlp = spacy.load("en_core_web_sm")
-
-text =  """
-I have experience with Python, Django, GitHub,
-Machine Learning and Data Science.
-"""
-
-doc = nlp(text)
-
-skills = [
+# Define SKILLS
+SKILLS = {
     "python",
+    "sql",
+    "html",
+    "css",
+    "javascript",
     "django",
+    "flask",
+    "postgresql",
+    "docker",
+    "git",
     "github",
+    "firebase",
+    "linux",
+    "jenkins",
     "machine learning",
     "data science",
-    "git",
-    "sql"
-]
+    "natural language processing"
+}
 
+# Create PhraseMatcher
 matcher = PhraseMatcher(nlp.vocab)
 
+# Create patterns
+patterns = [nlp.make_doc(skill) for skill in SKILLS]
 
-patterns = [nlp.make_doc(skill) for skill in skills]
+# Add patterns
+matcher.add("SKILL",patterns)
 
-matcher.add("SKILL", patterns)
+def extract_skills(text):
+    detected_skills=[]
+    # Create doc from text
+    doc = nlp(text)
+    
+    # Run matcher
+    matches = matcher(doc)
+    
+    # Loop through matches
+    
+    for match_id, start, end in matches:
+        
+        # Convert each match into span.text
+        span = doc[start:end]
+        
+        # Add it to detected_skills
+        detected_skills.append(span.text)
+        
+        # Return detected_skills
+        return detected_skills
+    
+    if __name__ == "__main__":
+        sample_text = """
+    I have experience with Python, Django,
+    Machine Learning and GitHub.
+    """
 
-matches = matcher(doc)
-
-for match_id, start, end in matches:
-    span = doc[start:end]
-    print(span.text)
+        print(extract_skills(sample_text))
+    
+    
